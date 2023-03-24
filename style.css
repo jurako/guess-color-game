@@ -4,6 +4,10 @@
     font-family: 'Raleway' , sans-serif;;
 }
 
+body {
+    background-color: #232323;
+}
+
 .center-content {
     width: 600px;
     margin: 0 auto;
@@ -30,7 +34,6 @@
 .nav__container {
     display: flex;
     justify-content: space-between;
-
 }
 
 .nav__difficulty-container {
@@ -40,9 +43,11 @@
 
 .nav {
     text-align: center;
+    background-color: #fff;
 }
 
 .nav__link {
+    display: inline-block;
     padding: 9px;
     text-transform: uppercase;
     color: rgb(44, 142, 153);
@@ -56,17 +61,22 @@
     color: white;
 }
 
+.nav__link--mode--active {
+    background-color: rgb(44, 142, 153);
+    color: white;
+}
+
 .color__container {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    margin-top: 10px;
 }
 
 .color {
     height: 190px;
     width: 190px;
     border-radius: 10px;
-    background-color: green;
 }
 
 .color:hover {

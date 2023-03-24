@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
     <title>Guess the color</title>
 </head>
 <body>
@@ -19,10 +18,10 @@
     </header>
     <nav class="nav">
         <div class="nav__container center-content">
-            <a class="nav__link">New game</a>
-            <div class="nav__difficulty-container">
-                <a class="nav__link">Easy</a>
-                <a class="nav__link">Hard</a>
+            <a class="nav__link nav__link--new-game">New game</a>
+            <div class="nav__mode-container">
+                <a class="nav__link nav__link--mode" data-value="easy">Easy</a>
+                <a class="nav__link nav__link--mode nav__link--mode--active" data-value="hard">Hard</a>
             </div>
         </div>
     </nav>
@@ -35,5 +34,7 @@
         <div class="color"></div>
         <div class="color"></div>
     </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
