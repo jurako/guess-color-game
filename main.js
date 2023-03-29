@@ -21,8 +21,7 @@
         COLOR_CONTAINER.innerHTML = '';
 
         //get current game mode (amount of colors)
-        let currMode = document.querySelector(MODE_SELECTOR);
-        currMode = currMode.dataset.value;
+        let currMode = document.querySelector(MODE_SELECTOR).dataset.value;
         let colors = Object.hasOwn(modes, currMode) ? modes[currMode] : DEFAULT_MODE;
 
         //generate the number of a random color div that will have the correct color
@@ -31,22 +30,17 @@
         //generate colors
         for(let i = 1; i <= colors; i++) {
             let colorDiv = document.createElement('div');
-            colorDiv.className = 'color';
+            colorDiv.className = 'color color--animated';
 
             if(i == correctColor) {
                 colorDiv.style.backgroundColor = `rgb(${newRGB})`;
             } else {
                 colorDiv.style.backgroundColor = `rgb(${generateRGB()})`;
             }
-            console.log('colorDiv');console.log(colorDiv);
+            colorDiv.style.color = colorDiv.style.backgroundColor;
+
             COLOR_CONTAINER.append(colorDiv);
         }
-        //for each color:
-            //generate color el
-            //if i == randomColorNumber => add radomColor as BG color
-            //else => generateRandomRgbColor and add as color
-            //append color to COLOR_CONTAINER
-        //end for
     }
 
     //events:
