@@ -5,42 +5,52 @@
     const RGB_TITLE = document.querySelector('.header__rgb-number');
     const COLOR_CONTAINER = document.querySelector('.color__container');
 
-    const modes = {
-        easy: 3,
-        hard: 6
+    const DEFAULT_MODE = 'hard';
+    const difficulties = {
+        easy: { colorCount: 3 },
+        hard: { colorCount: 6 }
     }
-    const DEFAULT_MODE = 6;
-    
+
     function init() {
-        
+        let newRGB = _randomRGB();
+
         //update RGB title
-        let newRGB = generateRGB();
         RGB_TITLE.textContent = `RGB (${newRGB})`;
 
         //clear color container
         COLOR_CONTAINER.innerHTML = '';
 
         //get current game mode (amount of colors)
-        let currMode = document.querySelector(MODE_SELECTOR).dataset.value;
-        let colors = Object.hasOwn(modes, currMode) ? modes[currMode] : DEFAULT_MODE;
+        let mode = getGameMode();
+        let colorCount = difficulties[mode].colorCount;
 
-        //generate the number of a random color div that will have the correct color
-        let correctColor = randomNum(colors);
+        //generate the order number of div with the correct color
+        let correctColor = _randomNum(colorCount);
 
         //generate colors
-        for(let i = 1; i <= colors; i++) {
-            let colorDiv = document.createElement('div');
-            colorDiv.className = 'color color--animated';
+        let randColor = '';
+        for(let i = 1; i <= colorCount; i++) {
 
-            if(i == correctColor) {
-                colorDiv.style.backgroundColor = `rgb(${newRGB})`;
-            } else {
-                colorDiv.style.backgroundColor = `rgb(${generateRGB()})`;
-            }
-            colorDiv.style.color = colorDiv.style.backgroundColor;
+            randColor = (i == correctColor) ? `rgb(${newRGB})` : `rgb(${_randomRGB()})`;
+            COLOR_CONTAINER.append( createColorDiv(randColor) );
 
-            COLOR_CONTAINER.append(colorDiv);
         }
+    }
+
+    function getGameMode() {
+        let mode = document.querySelector(MODE_SELECTOR).dataset.value;
+
+        return ( mode && Object.hasOwn(difficulties, mode) ) ? mode : DEFAULT_MODE;
+    }
+
+    function createColorDiv(randColor) {
+        let colorDiv = document.createElement('div');
+        colorDiv.className = 'color color--animated';
+
+        colorDiv.style.color = randColor;
+        colorDiv.style.backgroundColor = randColor;
+
+        return colorDiv;
     }
 
     //events:
@@ -48,7 +58,7 @@
     // 2. Game mode links
     // 3. Color container (with propagation)
 
-    function generateRGB() {
+    function _randomRGB() {
         let R = Math.ceil(Math.random() * 255);
         let G = Math.ceil(Math.random() * 255);
         let B = Math.ceil(Math.random() * 255);
@@ -57,7 +67,7 @@
 
     }
 
-    function randomNum(max) {
+    function _randomNum(max) {
         return Math.ceil(Math.random() * max);
     }
 
